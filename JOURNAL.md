@@ -20,7 +20,7 @@ I went into this project thinking I was going to use SMPS for power instead of L
 
 I added two hours of time to account for the time I spent researching prior to recroding the lapse.
 
-**Total time spent: 1.65 hours**
+**Total time spent: 2.65 hours**
 
 # November 16: Schematic Work - Power Supply and LSE
 
