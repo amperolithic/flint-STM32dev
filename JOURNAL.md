@@ -18,15 +18,19 @@ I went into this project thinking I was going to use SMPS for power instead of L
 
 [**Laspe Recording**](https://lapse.hackclub.com/timelapse/9Q6iECUoty0G)
 
-I added an hour of time to account for the time I spent researching prior to recroding the lapse.
+I added two hours of time to account for the time I spent researching prior to recroding the lapse.
 
 **Total time spent: 1.65 hours**
 
 # November 16: Schematic Work - Power Supply and LSE
 
-Did a work session today where I finished up the Power Supply wiring I started yesterday. Before I began I did some searching on how to read the datasheet properly and so I was no longer confused on what capacitors I needed to place. When I was doing research yesterday, I learned that I don't need to add a 8MHz crystal (contrary to the guides I was following) as the U5 series, being newer, has a sufficent internal oscillator designed to be used with the USB. However, I did still had to add Low Speed External clock for low power operation (which is the main focus of my devboard.)
+Did a work session today where I finished up the Power Supply wiring I started yesterday. Before I began I did some searching on Google regarding how to read the datasheet properly, and so I was no longer confused on what capacitors I needed to place. I think what got me so confused yesterday was that fact I was too focused on trying to match the power supply scheme to the one in my guides, when they had notably different designs. I now understand that when the datasheet reads "n x 100 nF + 1 x 10 μF", for instance, it is saying that a `n` amount of 100nF ceramic capacitors (that being each instance of the associated pin - VDD, in this case - as not every STM32U575xx microcontroller has the same amount of pins) should be placed so each pin has its own capacitor. In addtion, a 10μF bulk capacitor should be placed, and this capacitor is shared among all the VDD pins. It was also when I was doing this that I learned it is standard to add a 100nF capacitor to VBAT (even if the power scheme did not show it) if I am not adding a seperate coin cell to my board, and that adding a ferrite bead to VDAA can create cleaner ADC sensor reading (I actually discovered this when as I was making the schematic when I was checking over my design to make sure it was electrically correct).
 
-I did spend a bit more time than expected on making the schematic look nice, but I really want to make sure my schematic looks organized. I know communication is important, and my inital wiring (which I used to get my bearing on which compnents went where) was a lot harder to read upon first glance.
+When I was doing research yesterday, I learned that I don't need to add a 8MHz crystal (contrary to the guides I was following) as the U5 series, being newer, has a sufficent internal oscillator designed to be used with the USB. However, I did still had to add Low Speed External clock for low power operation (which is the main focus of my devboard.) So after finishing my power scheme I decided I would try and add that too. Honeslty, it took more time finding hwat crystal I wanted and getting its schematic into KiCad than actually wiring it. The wiring was pretty simple as I had both the datasheet and guides to reference. For my load capacitance calculation (C = 2(CL - Cparasitic)) I did `2*(7pF - 3pF)`.
+
+I did spend a bit more time than expected on making the schematic look nice, but I really want to make sure my schematic looks organized. I used Fabricate's images as a starting point and then continued adjusting for clarity by myself. I know communication is important, and my inital wiring (which I used to get my bearing on which compnents went where) was a lot harder to read upon first glance. 
+
+Tommorow I will either continue RoboticWorx guide's flow and starting breaking out the MC's GPIOs or I will hook up the USB, SWD debugging and maybe my energy harvesting system.
 
 [**Laspe Recording**](https://lapse.hackclub.com/timelapse/xZ3T5_3_5pFG)
 
