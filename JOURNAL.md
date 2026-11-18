@@ -36,3 +36,14 @@ Tommorow I will either continue RoboticWorx guide's flow and starting breaking o
 
 **Total time spent: 1.27 hours**
 
+# November 17: Schematic Work - SWD Headers
+
+Today was a very quick session; I was quite busy and did not get a chance to work until it was quite late. Earlier today I decided I would add all components that used the microcontroller GPIO pins (Wifi/Bluetooth module, BOOST/RST buttons and SWD headers) before choosing what GPIOs I would breakout. Then I would work on power stuff (the nergy harvesting system, USB, LEDs, etc). So I began by getting the sysmbol and footprint for the ST67W611M1, the Wi-Fi 6 / BLE 5.4 module I chose earlier to add wireless capablities to my devboard. As I was doing this I discovered there were 3 versions of the coporcessor module: a `-B` version with an embedded PCB antenna a `-U` version with an external RF connector (I think its for projects in faraday cages) and a `-P` version that has an RF pin output. I chose the `-B` version as I don't need an external or custom antenna. It appeared to be the simplist and most compact option/
+
+[**Laspe Recording**](https://lapse.hackclub.com/timelapse/nKGTNsDK4SVg)
+
+**Total time spent: 0.62 hours**
+
+
+https://codex.hackclub.com/user-contrib-guides/schematic-practices/
+
