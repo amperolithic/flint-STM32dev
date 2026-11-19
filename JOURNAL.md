@@ -38,12 +38,20 @@ Tommorow I will either continue RoboticWorx guide's flow and starting breaking o
 
 # November 17: Schematic Work - SWD Headers
 
-Today was a very quick session; I was quite busy and did not get a chance to work until it was quite late. Earlier today I decided I would add all components that used the microcontroller GPIO pins (Wifi/Bluetooth module, BOOST/RST buttons and SWD headers) before choosing what GPIOs I would breakout. Then I would work on power stuff (the nergy harvesting system, USB, LEDs, etc). So I began by getting the sysmbol and footprint for the ST67W611M1, the Wi-Fi 6 / BLE 5.4 module I chose earlier to add wireless capablities to my devboard. As I was doing this I discovered there were 3 versions of the coporcessor module: a `-B` version with an embedded PCB antenna a `-U` version with an external RF connector (I think its for projects in faraday cages) and a `-P` version that has an RF pin output. I chose the `-B` version as I don't need an external or custom antenna. It appeared to be the simplist and most compact option/
+Today was a very quick session; I was quite busy and did not get a chance to work until it was quite late. Earlier today I decided I would add all components that used the microcontroller GPIO pins (Wifi/Bluetooth module, BOOST/RST buttons and SWD headers) before choosing what GPIOs I would break out. Then I would work on power stuff (the energy harvesting system, USB, LEDs, etc). So I began by getting the symbol and footprint for the ST67W611M1, the Wi-Fi 6 / BLE 5.4 module I chose earlier to add wireless capabilities to my devboard. As I was doing this I discovered there were 3 versions of the coprocessor module: a `-B` version with an embedded PCB antenna, a `-U` version with an external RF connector (I think its for projects in faraday cages) and a `-P` version that has a RF pin output. I chose the `-B` version as I don't need an external or custom antenna. It appeared to be the simplest and most compact option. 
+
+I knew I would have to do some datasheet reading and additional research to find where the pins go (all I know right now is I need to connect the SPI bus), so I decided to work on that for tomorrow. I’ll aim to finish the other GPIO components tomorrow.
+
+With the limited time I had today, following the Instructable guide’s suggestion, I added pin headers so one can use an external programmer designed specifically for Cortex-M microcontrollers to Serial Wire Debug (SWD). According to my understanding, it uses some of the STM32’s serial wire pins to communicate with an external debugger tool (e.g. the ST-LINK/V2), which has useful debugging functions such as being able to flash code, pause execution on any line of code and inspect live variables. The NRST and optional SWO (Serial Wire Output) pin, lets the external debugger reset the chip and receive high speed internal data that is printed to the terminal, respectively. I have been trying my best to follow [good schematic practices](https://codex.hackclub.com/user-contrib-guides/schematic-practices/) using HackClub’s guide, but I think I’m overthinking things a little bit. I spent too long contemplating on whether I should use global labels or local labels (when Laspe was paused). I think I’m going to focus more on getting my connections done properly first (for at least the direct connections to my microcontroller) before I go in and polish for clarity. I think this might speed up my schematic workflow. One last thing to mention, directed to my future self, is that I plan to solder pin headers vertically to be PCB during assembly.
 
 [**Laspe Recording**](https://lapse.hackclub.com/timelapse/nKGTNsDK4SVg)
 
 **Total time spent: 0.62 hours**
 
+# November 18: Schematic Work - SWD Headers
 
-https://codex.hackclub.com/user-contrib-guides/schematic-practices/
+Did some work; will update later
 
+[**Laspe Recording**](https://lapse.hackclub.com/timelapse/44AadsadqH9w)
+
+**Total time spent: 1.25 hours**
