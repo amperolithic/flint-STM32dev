@@ -48,10 +48,27 @@ With the limited time I had today, following the Instructable guide’s suggesti
 
 **Total time spent: 0.62 hours**
 
-# November 18: Schematic Work - SWD Headers
+# November 18: Schematic Work - BOOT/RST Buttons
 
-Did some work; will update later
+Today I tried to lock in for an hour, but honestly ended up feeling locked out, here’s what happened: I continued with my plan to finish components that required GPIOs. I started off strong, using the guidance of the Fabricate tutorial and the STM32U5 datasheet to hookup the flashing buttons (BOOT and RESET; I already had chosen what button module I would use on the 15th) to the microcontroller. The only hiccup I experienced was that the two guides had different ways of hooking them up. The Fabricate guide omitted adding an external pull-up to the NRST pin (for the RESET button) because the STM32 it was using already had an internal one whereas the Instructables guide still added one. It also added the recommended 0.1μf capacitor for the NRST pin (according to datasheet) to the BOOT pin, explaining its good to prevent *button bouncing* (causes false triggers upon pressing the button) from occurring. I initially decided to keep the extra components but on further thought, I am probably going to remove the extra pull-up resistor tomorrow. The main benefit of adding the resistor in my case (that I searched up when I came across this discrepancy) would be if my board was noisy - which it won’t be due to its small size. In fact, I probably will lose more keeping this as the datasheet said the internal resistor deactivates during internal resets, saving power. Adding that external resistor, which is always on, will make that power saving feature -  a key principle of this project’s design - useless.
+
+Anyway, after that I *attempted* to start wiring my wifi module (the ST67W611M1) to my microcontroller, but quickly became a bit lost as I had no guide to refer to for this part. I had only previously researched the fact I wanted to use this module, not how it was wired, so I spent a good 20 minutes just trying to get my bearings. I first looked at the datasheet, but it was not much of a help. What really was useful was the Hardware Setup Wiki for the part, which specified what pins I needed to connect to my microcontroller. However, due to my inexperience with hardware, I got a bit confused at this part. I decided I would start with connecting the SPI bus, as I knew for prior reading I would need to connect the “slave” SPI pins to the corresponding “master” pins - I just needed to identify what pins they were on the MC. I took a bit of time to find the pin definition chart on the MC datasheet, but once I did I could not figure out where I had to connect `SPI_CLK` to. No pin definition described “CLK”, so I spent quite a bit of time trying to understand where it needs to go. It was only after searching up how SPI bus connections work that I saw “CLK” can also be referred to as “SCK” (among other things). With that I was able to finally figure out what pin it goes to and I was able to piece where the other SPI pins connect. The same thing occurred with addressing the `SPI_CS`, but I knew what I had to do and found it connected to “NSS” as well. 
+
+However, I **could not** figure out where `CHIP_EN` went! I originally wanted to try and wire the module myself before consulting external help, but I think I fundamentally misunderstand how I am meant to connect this module to the microcontroller. So I decided to stop there and I plan to do some reading so I am ready for action tomorrow! My goal for tomorrow is to successfully hook up the wifi module and break out some GPIOs.
 
 [**Laspe Recording**](https://lapse.hackclub.com/timelapse/44AadsadqH9w)
 
 **Total time spent: 1.25 hours**
+
+# November 19: Schematic Work - ST67W611M1
+
+Okay, so I did a bit of reading before I worked today and I found out there are essentially two types of pins when connecting a slave component to a master MCU: fixed hardware buses and flexible control GPIOs. According to my understanding, the fixed hardware pins must go to  specific hardware pins on the MCU, and these are usually pins that carry continuous data or a clock waveform, such as the dedicated SPI bus or the UART pins (which needs specific pins for flashing firmware). So it was correct for me to look at the “Alternate Functions” column in the pin definition chart to see where to connect the wifi modules SPI to. However, the flexible pins, which usually just turn something on or off, select a chip, or trigger an alert, can be assigned to **any** available GPIO pins. That’s why I could not find a pin definition for the CHIP_EN as it did not need to connect to a specific pin. It is simply an enable output, which can turn on or off the module by setting a logic to HIGH or LOW.
+
+Now that I had a better understanding of what I was doing, I was able to complete wiring the rest of the wifi module. I’ll definitely make sure to get it sanity checked to ensure I did everything correctly.
+To finish off the wifi module wiring, I added a load switch to the wifi’s power rail. When I was doing research on making a “zero-idle” board during the 15th, I found a load switch was needed to physically disconnect the 3V3 power from the ST67W611M1 (by setting the load switch’s GPIO pin to low) after the MCU finished sending data over Wifi, dropping the Wifi module’s power consumption to 0.00 µA.
+
+(Will go more in depth tmmrw)
+
+[**Laspe Recording**](https://lapse.hackclub.com/timelapse/wP_p2aQVCzd9)
+
+**Total time spent: 1.28 hours**
