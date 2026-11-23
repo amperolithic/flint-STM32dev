@@ -67,8 +67,18 @@ Okay, so I did a bit of reading before I worked today and I found out there are 
 Now that I had a better understanding of what I was doing, I was able to complete wiring the rest of the wifi module. I’ll definitely make sure to get it sanity checked to ensure I did everything correctly.
 To finish off the wifi module wiring, I added a load switch to the wifi’s power rail. When I was doing research on making a “zero-idle” board during the 15th, I found a load switch was needed to physically disconnect the 3V3 power from the ST67W611M1 (by setting the load switch’s GPIO pin to low) after the MCU finished sending data over Wifi, dropping the Wifi module’s power consumption to 0.00 µA.
 
-(Will go more in depth tmmrw)
+(I will add more depth to this log later)
 
 [**Laspe Recording**](https://lapse.hackclub.com/timelapse/wP_p2aQVCzd9)
 
 **Total time spent: 1.28 hours**
+
+# November 22: Schematic Work - Polishing
+
+I initially wanted to start working on connecting the USB receptacle, but once I found out which pins would be used by the USB (PA11 and PA12) I decided to clean up my schematic first, making sure to follow the best practices for schematic design. As I was doing that and considered assigning the rest of my pin breakout, I remembered I will have to connect some pins to the "energy-harvesting" part of this designing, meaning I am going to have to work on my energy harvesting module (one I finishing connecting the USB) before I break out all my pins. With that revelation, I decided to get to work finding the exact components I would be using for my USB component. One I decided on a USB and ESD protection (following a recommendation from the guide), I added them to my BOM and attempted to get the symbol, footprint and models for them, but for some reason my wifi was being slow and it took a while to get them.
+
+I will continue with the USB tommorow.
+
+[**Laspe Recording**](https://lapse.hackclub.com/timelapse/fA89dKHPzaw7)
+
+**Total time spent: 1.05 hours**
