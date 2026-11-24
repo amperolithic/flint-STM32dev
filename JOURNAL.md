@@ -82,3 +82,11 @@ I will continue with the USB tommorow.
 [**Laspe Recording**](https://lapse.hackclub.com/timelapse/fA89dKHPzaw7)
 
 **Total time spent: 1.05 hours**
+
+# November 23: Schematic Work - USB-C Module
+
+Today believe I sucessfullhy added in my USB-C module and briefly began looking into the energy harvesting PMIC I am planning on working on tommorow. 
+
+[**Laspe Recording**](https://lapse.hackclub.com/timelapse/P4Ngx1175ft-)
+
+**Total time spent: 1.05 hours**
