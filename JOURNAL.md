@@ -90,3 +90,13 @@ Today believe I sucessfullhy added in my USB-C module and briefly began looking 
 [**Laspe Recording**](https://lapse.hackclub.com/timelapse/P4Ngx1175ft-)
 
 **Total time spent: 1.05 hours**
+
+# November 24: Schematic Work - Power Modules
+
+I have only alloted myself an hour to work today. I honeslty spent way to long trying to get schematics for my energy PMIC and buck regulator (although it loks like KiCAD may have hadfootprints I could already use?). Now I'm going on a scavenger hunt in the datasheets to find what I need to do. Wi;; update later!
+
+[**Laspe Recording**](https://lapse.hackclub.com/timelapse/mTb05KhOJIEJ)
+
+**Total time spent: 1.05 hours**
+
+
