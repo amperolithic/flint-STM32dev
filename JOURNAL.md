@@ -99,4 +99,13 @@ I have only alloted myself an hour to work today. I honeslty spent way to long t
 
 **Total time spent: 1.05 hours**
 
+# November 25: Schematic Work - Power
+
+I got the buck regulator done and then got stumped by the PMIC. Will explain my throughout process throughout laspe soon!
+
+[**Laspe Recording**](https://lapse.hackclub.com/timelapse/1MpFG-VPIZqp)
+
+**Total time spent: 1.12 hours**
+
+
 
