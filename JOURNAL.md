@@ -68,12 +68,14 @@ Now that I had a better understanding of what I was doing, I was able to complet
 To finish off the wifi module wiring, I added a load switch to the wifi’s power rail. When I was doing research on making a “zero-idle” board during the 15th, I found a load switch was needed to physically disconnect the 3V3 power from the ST67W611M1 (by setting the load switch’s GPIO pin to low) after the MCU finished sending data over Wifi, dropping the Wifi module’s power consumption to 0.00 µA.
 
 I’m currently trying to work for at least an hour everyday on this project (until it’s done), so since I still had some time left and thought no other components I would be adding required GPIO pins from the main MCU, I began looking looking for what GPIO pins supplied some functions I want my devboard to have. I was specifically looking for I2C pins, SPI and UART/USART pins as I know they are useful to breakout and can be used in a variety of projects. I also added some pin connectors symbols as I plan to break out 32 pins. By the time I found those my hour had come to the end and I was also unsure of what other pins I wanted to breakout. I also realized in the process that I still needed to connect the USB (which requires GPIO pins from the MCU to send data). I plan on doing that tomorrow, along with polishing everything I have done.
+
 Speaking of polishing, after finishing that last session, I tried to see if they were any way I could verify that I had wired my controller correctly (I made a few guesses), and that’s when I found out (from advice online) that a good way to check the wiring for a component is to check the manufacturer's reference schematic (of an official devboard that uses the chip you are using) and copy/reference the values on it. Little did I know I already had the necessary document open all of last session (I even looked at it!!) but I barely used it at all because I did not initially understand it. In the first session I opened it, I was looking at a completely wrong page that showed the other components. Then today, I was looking at it and was confused as to why so many parts were omitted (I now know it because manufacturers like to keep unpopulated footprints that can be temporarily populated later for potential testing), and had incorrectly came to the conclusion the pin assignments did not match my own schematic, so I should be weary of using it. So since I still had time before bed I decided to go over the wiring for the wifi module and I am now 99% sure it will work (will still sanity check it later though with input from others).
 
 [**Laspe Recording**](https://lapse.hackclub.com/timelapse/wP_p2aQVCzd9)
+
 [**Laspe Recording**](https://lapse.hackclub.com/timelapse/uDLbSnCLwqs5)
 
-**Total time spent: 1.28 hours**
+**Total time spent: 1.67 hours**
 
 # November 22: Schematic Work - Polishing
 
@@ -101,9 +103,18 @@ I have only alloted myself an hour to work today. I honeslty spent way to long t
 
 **Total time spent: 1.05 hours**
 
-# November 25: Schematic Work - Power
+# November 25: Schematic Work - Buck Regulator 
 
-I got the buck regulator done and then got stumped by the PMIC. Will explain my throughout process throughout laspe soon!
+Today I gave myself an hour to try and complete both the buck converter and energy harvesting chip. I did complete a buck converter, but I did not complete the energy harvesting.
+
+Yesterday, I got a little stumped on my pin assignments because I was not sure where to attach things according to the TPS62842 datasheet, however I realized after finishing my recording that I was looking at the wrong “Typical Application” diagram. The one on the front page was for a more generalized package while the package I was using had its diagram in section 9.2 of the datasheet. From there hooking up the rest of the converter was pretty simple; I found the RSET value needed for 3.3V in a table and deduced that I needed to connect my EN pin to power (as it my main system regulator and will ensure the MCU receives 3.3V power instead of the 5V taken by the USB). 
+
+Then I went on to wiring the energy harvesting chip, which proved to be a bit more confusing. I first went through the pin assignments functions and slowly started to wire things up. I initially thought I was going to be able to wire the BQ25570 to have multiple potential applications (for instance, solar or TEG) as they looked very similar, but as I was going through it I was was noticing notable differences such as resistor values and where VOC_SAMP goes. Now I’m unsure if I should just choose on application style (I’ll likely do solar) or see if it’s worth setting up some pin jumpers to make the board more versatile. I was also a bit confused by the resistors calculations.
+
+Also, I know the BQ25570 has its own buck converter, but I decided to use an external one as the buck converter I choose has a greater electrical tolerance. If one chooses to attach external sensors, or just use the board to transmit a continuous wifi signal, the 110 mA limit of the internal buck regulator would cause my STM32 to brown out (a new term I learned!) and reset. Using the TPS62842 is safer. (Also I think there are some complications with plugging in USB 5V into one of the BQ25570 power pins.)
+
+Since I didn’t really want to do more searching at the time I just decided to start doing the final polish of my schematic for the last 10 minutes.
+I’ll look over the datasheet, clarify my uncertainties and make an update tomorrow, hopefully with the energy harvesting PMIC done.
 
 [**Laspe Recording**](https://lapse.hackclub.com/timelapse/1MpFG-VPIZqp)
 
