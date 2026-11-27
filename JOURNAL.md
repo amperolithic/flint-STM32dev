@@ -79,9 +79,9 @@ Speaking of polishing, after finishing that last session, I tried to see if they
 
 # November 22: Schematic Work - Polishing
 
-I initially wanted to start working on connecting the USB receptacle, but once I found out which pins would be used by the USB (PA11 and PA12) I decided to clean up my schematic first, making sure to follow the best practices for schematic design. As I was doing that and considered assigning the rest of my pin breakout, I remembered I will have to connect some pins to the "energy-harvesting" part of this designing, meaning I am going to have to work on my energy harvesting module (one I finishing connecting the USB) before I break out all my pins. With that revelation, I decided to get to work finding the exact components I would be using for my USB component. One I decided on a USB and ESD protection (following a recommendation from the guide), I added them to my BOM and attempted to get the symbol, footprint and models for them, but for some reason my wifi was being slow and it took a while to get them.
+I initially wanted to start working on connecting the USB receptacle, but once I found out which pins would be used by the USB (PA11 and PA12) I decided to clean up my schematic first, making sure to follow the best practices for schematic design. As I was doing that, I considered assigning the rest of my MCU breakouts, but then I remembered my "energy-harvesting" part will also require some GPIO connections, meaning I am going to have to work on my energy harvesting module (once I finishing connecting the USB) before I break out all my pins. With that revelation, I decided to get to work finding the exact components I would be using for my USB-C component. Once I decided on an USB and ESD protection (following a recommendation from the guide), I added them to my BOM and attempted to get the symbol, footprint and models for them, but for some reason my wifi or DigiKey was acting weird and downloads kept falling so it took a while to get them.
 
-I will continue with the USB tommorow.
+I will continue with the USB tomorrow.
 
 [**Laspe Recording**](https://lapse.hackclub.com/timelapse/fA89dKHPzaw7)
 
@@ -89,11 +89,16 @@ I will continue with the USB tommorow.
 
 # November 23: Schematic Work - USB-C Module
 
-Today believe I sucessfullhy added in my USB-C module and briefly began looking into the energy harvesting PMIC I am planning on working on tommorow. 
+I successfully added USB-C to my schematic! I thought this was going to be a quick process as both guides showed examples of how my USB should look, however I was slightly thrown off by how my footprints were slightly different from the guides. I kept looking at the datasheet for specifically my USB-C to ensure everything was correct. I think another issue of mine is that I try to keep the schematic clean/polished as I am wiring a part up. I think a better and more efficient workflow would be to wiring everything up first and then polish so I do not have to redo a part of a pull down resistor, for instance, it is inserted and gets in the way of a power rail.
+
+Another thing that extended this rather quick job was changing the Schottky diode suggested in the RoboticWorx guide. As I was adding the originally suggested 1N5819 diode, I remembered I had read about how some diodes are designed to have ultra low leakage. They help save standby power by minimizing the energy wasted from current flowing back through the diode. I’m pretty sure the diode is there in the first place to help protect my computer if one decides to add a battery to it. I meant to select a diode and add it to my Google Docs but forgot so I quickly searched one up and used that diode for my devboard.
+Once I was done with that, my hour of work was coming to its end so I briefly began looking into the energy harvesting PMIC, which I plan on working on tomorrow!
+
+**UPDATE**: The BAT54 (the Schottky diode) has multiple packages labelled BAT54A, BAT54B, etc. This actually confused me at first when trying to get the KiCad symbol for it (as no symbol was provided on DigiKey). I also had to be careful to reference the right package in the datasheet (I think at one point I was incorrectly referring to the BAT54A package). Anyway, after recording I decided to look more into these packages (as they were all ultra low leakage diodes) and decided to switch the BAT54 with the dual diode, BAT54C. Still using the same footprint size, the BAT54C can protect both my USB and whatever secondary source my energy harvesting chip will use - instead of having to use two diodes. I’m going to add 10 minutes to the time. (I think it was a bit more but I don’t want to inflate time!)
 
 [**Laspe Recording**](https://lapse.hackclub.com/timelapse/P4Ngx1175ft-)
 
-**Total time spent: 1.05 hours**
+**Total time spent: 1.22 hours**
 
 # November 24: Schematic Work - Power Modules
 
@@ -119,6 +124,14 @@ I’ll look over the datasheet, clarify my uncertainties and make an update tomo
 [**Laspe Recording**](https://lapse.hackclub.com/timelapse/1MpFG-VPIZqp)
 
 **Total time spent: 1.12 hours**
+
+# November 26: Schematic Work - Buck Regulator 
+
+I will update with a more detailed log; one thing is for certain though: the schematic will be completed tommorow.
+
+[**Laspe Recording**]()
+
+**Total time spent: 1.03 hours**
 
 
 
